@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gift Wrap Generator</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h1>🎁 Gift Wrap Generator</h1>
+  <p class="subtitle">Design your own wrapping paper, then take it home.</p>
+</header>
+
+<main class="layout">
+
+  <section class="controls" aria-label="Pattern controls">
+
+    <div class="control-group">
+      <label for="shape">Shape</label>
+      <select id="shape">
+        <option value="circle">Circle</option>
+        <option value="square" selected>Square</option>
+        <option value="triangle">Triangle</option>
+        <option value="hexagon">Hexagon</option>
+        <option value="star">Star</option>
+        <option value="heart">Heart</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="layout">Layout</label>
+      <select id="layout">
+        <option value="grid">Grid</option>
+        <option value="brick" selected>Brick</option>
+        <option value="scatter">Scatter</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="size">Shape size <span id="sizeVal" class="val">28</span></label>
+      <input type="range" id="size" min="8" max="60" value="28" />
+    </div>
+
+    <div class="control-group">
+      <label for="spacing">Spacing <span id="spacingVal" class="val">18</span></label>
+      <input type="range" id="spacing" min="0" max="60" value="18" />
+    </div>
+
+    <div class="control-group">
+      <label for="rotation">Rotation <span id="rotationVal" class="val">0&deg;</span></label>
+      <input type="range" id="rotation" min="0" max="360" value="0" />
+    </div>
+
+    <div class="control-group checkboxes">
+      <label><input type="checkbox" id="randomRotation" /> Random rotation</label>
+      <label><input type="checkbox" id="varySize" /> Vary size</label>
+      <label><input type="checkbox" id="randomColors" checked /> Random colors</label>
+    </div>
+
+    <div class="control-group">
+      <label>Background</label>
+      <input type="color" id="bgColor" value="#1b1035" />
+    </div>
+
+    <div class="control-group">
+      <label>Palette</label>
+      <div id="palette" class="palette"></div>
+      <div class="add-color-wrap">
+        <button id="addColor" class="small-btn" type="button">+ Add color</button>
+        <div id="addColorPopover" class="popover hidden">
+          <div class="popover-row">
+            <input type="color" id="newColorInput" value="#ffffff" />
+            <input type="text" id="newColorHex" class="hex-input" value="#ffffff" maxlength="7" />
+          </div>
+          <label class="popover-label" for="newColorTexture">Texture</label>
+          <select id="newColorTexture"></select>
+          <div class="popover-actions">
+            <button id="cancelAddColor" class="small-btn" type="button">Cancel</button>
+            <button id="confirmAddColor" class="small-btn primary" type="button">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Ribbon</label>
+      <input type="color" id="ribbonColor" value="#ff3d6e" />
+    </div>
+
+    <div class="control-group actions">
+      <button id="randomizeBtn" type="button">🎲 Randomize</button>
+      <button id="exportPng" type="button">⬇ PNG</button>
+      <button id="exportSvg" type="button">⬇ SVG</button>
+    </div>
+
+  </section>
+
+  <section class="preview" aria-label="Preview">
+    <div class="sheet-wrap">
+      <canvas id="sheet" width="800" height="520"></canvas>
+    </div>
+
+    <div class="box-wrap">
+      <div class="gift-box">
+        <div class="box-top" id="boxTop"></div>
+        <div class="box-front" id="boxFront">
+          <div class="ribbon-v"></div>
+          <div class="ribbon-h"></div>
+          <div class="bow">
+            <span class="bow-loop bow-left"></span>
+            <span class="bow-loop bow-right"></span>
+            <span class="bow-knot"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
